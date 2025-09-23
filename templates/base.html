@@ -1,17 +1,17 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Online Exam System</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>{% block title %}Online Exam System{% endblock %}</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
 </head>
-<body>
-    <nav>
-        <a href="/">Home</a> |
-        <a href="/login">Login</a> |
-        <a href="/dashboard">Dashboard</a>
-    </nav>
-    <hr>
+<body class="bg">
+  <main>
     {% block content %}{% endblock %}
+  </main>
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
 </body>
 </html>
