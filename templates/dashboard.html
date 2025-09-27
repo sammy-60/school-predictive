@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+{% block title %}Dashboard · SMS-PRA{% endblock %}
+
+{% block content %}
+<section class="section">
+  <div class="header-row">
+    <h2 class="page-title">Welcome, {{ user.username }} 👋</h2>
+    <span class="role-badge">{{ user.role|capitalize }}</span>
+  </div>
+
+  {% if user.role == "student" %}
+  <div class="grid">
+    <a class="card linkcard" href="{{ url_for('results_page') }}">
+      <h3>📊 Results</h3>
+      <p>View your exam results, grades, and transcript.</p>
+    </a>
+    <a class="card linkcard" href="{{ url_for('analytics_page') }}">
+      <h3>📈 Analytics</h3>
+      <p>Predicted performance and weak-subject insights.</p>
+    </a>
+    <a class="card linkcard" href="{{ url_for('notices_page') }}">
+      <h3>📢 Notices</h3>
+      <p>Announcements, holidays, exam schedules.</p>
+    </a>
+    <a class="card linkcard" href="{{ url_for('downloads_page') }}">
+      <h3>📂 Downloads</h3>
+      <p>Notes, syllabus, assignments, resources.</p>
+    </a>
+  </div>
+  {% elif user.role == "faculty" %}
+  <div class="grid">
+    <a class="card linkcard" href="#">
+      <h3>📚 Courses</h3>
+      <p>Create/update courses and sections.</p>
+    </a>
+    <a class="card linkcard" href="#">
+      <h3>📝 Marks</h3>
+      <p>Upload marks (CSV) and edit per-student scores.</p>
+    </a>
+    <a class="card linkcard" href="#">
+      <h3>👨‍🎓 Reports</h3>
+      <p>Per-student analytics & class comparisons.</p>
+    </a>
+    <a class="card linkcard" href="#">
+      <h3>📂 Resources</h3>
+      <p>Upload notes, syllabus and course files.</p>
+    </a>
+  </div>
+  {% elif user.role == "admin" %}
+  <div class="grid">
+    <a class="card linkcard" href="#">
+      <h3>👥 Users</h3>
+      <p>Manage students, faculty and roles.</p>
+    </a>
+    <a class="card linkcard" href="#">
+      <h3>📚 Courses & Exams</h3>
+      <p>Define courses, schedule exams.</p>
+    </a>
+    <a class="card linkcard" href="#">
+      <h3>📢 Notices</h3>
+      <p>Publish announcements & holidays.</p>
+    </a>
+    <a class="card linkcard" href="#">
+      <h3>📈 System Analytics</h3>
+      <p>School-wide insights & trend dashboards.</p>
+    </a>
+  </div>
+  {% endif %}
+</section>
+{% endblock %}

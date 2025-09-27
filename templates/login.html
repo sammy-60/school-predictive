@@ -1,57 +1,49 @@
-{% extends "base.html" %}
-{% block title %}Login • Online Exam{% endblock %}
-{% block content %}
-<div class="auth-wrapper">
-  <div class="auth-card">
-    <div class="brand">
-      <div class="logo">🎓</div>
-      <div>
-        <h1>Online Exam System</h1>
-        <p class="muted">Welcome back! Please sign in to continue.</p>
-      </div>
-    </div>
-
-    {% if message %}
-      <div class="alert">{{ message }}</div>
-    {% endif %}
-
-    <form method="POST" action="{{ url_for('login') }}" novalidate class="form">
-      <!-- CSRF token if you add Flask-WTF later -->
-      <label class="field">
-        <span>Email</span>
-        <input name="email" type="email" placeholder="you@example.com" required />
-      </label>
-
-      <label class="field">
-        <span>Password</span>
-        <div class="password-row">
-          <input id="password" name="password" type="password" placeholder="••••••••" minlength="6" required />
-          <button class="ghost" type="button" onclick="togglePw()">Show</button>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Login · SMS-PRA</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body class="bg">
+  <div class="auth-wrapper">
+    <div class="auth-card">
+      <div class="brand">
+        <div class="logo">🎓</div>
+        <div>
+          <h1>School Management System (SMS-PRA)</h1>
+          <div class="muted">Welcome back! Please sign in to continue.</div>
         </div>
-      </label>
-
-      <div class="row between">
-        <label class="checkbox">
-          <input type="checkbox" name="remember" />
-          <span>Remember me</span>
-        </label>
-        <a href="#" class="link">Forgot password?</a>
       </div>
 
-      <button class="btn-primary" type="submit">Sign in</button>
+      {% if message %}
+      <div class="alert">{{ message }}</div>
+      {% endif %}
+
+      <form method="post" class="form">
+        <div class="field">
+          <span>Email</span>
+          <input type="email" name="email" placeholder="you@example.com" required />
+        </div>
+
+        <div class="field password-row">
+          <div style="flex:1">
+            <span>Password</span>
+            <input type="password" name="password" placeholder="••••••" required />
+          </div>
+        </div>
+
+        <button type="submit" class="btn-primary">Sign in</button>
+      </form>
 
       <div class="divider"><span>or</span></div>
-
       <div class="role-row">
-        <a class="chip" href="#">Student</a>
-        <a class="chip" href="#">Faculty</a>
-        <a class="chip" href="#">Admin</a>
+        <a href="#" class="chip">Student</a>
+        <a href="#" class="chip">Faculty</a>
+        <a href="#" class="chip">Admin</a>
       </div>
-    </form>
-
-    <p class="small muted center">
-      Don’t have an account? <a class="link" href="#">Contact admin</a>
-    </p>
+    </div>
   </div>
-</div>
-{% endblock %}
+</body>
+</html>
