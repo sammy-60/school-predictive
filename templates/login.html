@@ -5,6 +5,14 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Login · SMS-PRA</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <style>
+    /* Optional fade-out animation for alert box */
+    @keyframes fadeOut {
+      0% { opacity: 1; }
+      80% { opacity: 1; }
+      100% { opacity: 0; display: none; }
+    }
+  </style>
 </head>
 <body class="bg">
   <div class="auth-wrapper">
@@ -18,23 +26,24 @@
       </div>
 
       {% if message %}
-      <div class="alert">{{ message }}</div>
+      <div class="alert" id="alert-box">{{ message }}</div>
       {% endif %}
 
       <form method="post" class="form">
         <div class="field">
           <span>Email</span>
-          <input type="email" name="email" placeholder="you@example.com" required />
+          <input type="email" name="email" placeholder="sampanna.gautam@deerwalk.edu.np" required />
         </div>
 
-        <div class="field password-row">
-          <div style="flex:1">
-            <span>Password</span>
-            <input type="password" name="password" placeholder="••••••" required />
+        <div class="field">
+          <span>Password</span>
+          <div class="password-row">
+            <input type="password" name="password" id="password" placeholder="••••••" required />
+            <button type="button" class="ghost" onclick="togglePassword()">👁</button>
           </div>
         </div>
 
-        <button type="submit" class="btn-primary">Sign in</button>
+        <button type="submit" class="btn-primary">Sign In</button>
       </form>
 
       <div class="divider"><span>or</span></div>
@@ -45,5 +54,21 @@
       </div>
     </div>
   </div>
+
+  <script>
+    // Show/hide password
+    function togglePassword() {
+      const input = document.getElementById("password");
+      input.type = input.type === "password" ? "text" : "password";
+    }
+
+    // Fade out alert box automatically
+    const alertBox = document.getElementById("alert-box");
+    if (alertBox) {
+      setTimeout(() => {
+        alertBox.style.animation = "fadeOut 1.5s forwards";
+      }, 2500); // fades after 2.5 seconds
+    }
+  </script>
 </body>
 </html>
