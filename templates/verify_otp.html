@@ -13,15 +13,20 @@
         <div class="logo">🔒</div>
         <div>
           <h1>Email Verification</h1>
-          <div class="muted">Enter the 6-digit code sent to your Deerwalk email</div>
+          <div class="muted">Enter the 6-digit code sent to your email</div>
         </div>
       </div>
 
-      {% if message %}
-      <div class="alert">{{ message }}</div>
+      {# show flash messages if any #}
+      {% with msgs = get_flashed_messages(with_categories=true) %}
+      {% if msgs %}
+        {% for cat, msg in msgs %}
+          <div class="alert">{{ msg }}</div>
+        {% endfor %}
       {% endif %}
+      {% endwith %}
 
-      <!-- OTP Input Form -->
+      {# single page POST to verify #}
       <form method="post" class="form">
         <div class="field">
           <span>Verification Code</span>
@@ -30,13 +35,13 @@
         <button type="submit" class="btn-primary">Verify</button>
       </form>
 
-      <!-- 🔁 Add this below -->
+      {# resend button calls POST /resend-otp/<email> #}
       <form method="post" action="{{ url_for('resend_otp', email=email) }}" style="margin-top:12px;">
         <button class="ghost" type="submit">Resend code</button>
       </form>
 
       <div class="center small muted" style="margin-top:16px">
-        <p>Didn’t get the code? Check your spam folder or contact admin.</p>
+        Didn’t get the code? Check your spam folder or contact admin.
       </div>
     </div>
   </div>
